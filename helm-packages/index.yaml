@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  cdebase:
+  - apiVersion: v1
+    created: "2022-10-28T13:14:33.701454+02:00"
+    description: A Helm chart for Kubernetes
+    digest: 5e4c92ddde894db7003d1a1f5df1b0adf13cbd0095108516af12972102195d5c
+    name: cdebase
+    urls:
+    - https://onjectiondevops.github.io/helm-chart/helm-packages/cdebase-v0.1.4.tgz
+    version: v0.1.4
+generated: "2022-10-28T13:14:33.69799+02:00"
