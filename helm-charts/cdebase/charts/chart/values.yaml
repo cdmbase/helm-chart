@@ -63,3 +63,7 @@ autoscaling:
     resource:
       name: memory
       targetAverageUtilization: 60
+
+createConfigMapFromEnv: true
+## Flag to attach additional configmap
+# configMapReference: clockbook-app-backend-configuration

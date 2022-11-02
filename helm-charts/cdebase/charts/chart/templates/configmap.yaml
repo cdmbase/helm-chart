@@ -1,3 +1,4 @@
+{{- if .Values.createConfigMapFromEnv }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -26,5 +27,6 @@ data:
 {{- range $name, $value := .Values.env }}
 {{- if not (empty $value) }}
   {{ $name }}: {{ $value | quote }}
+{{- end }}
 {{- end }}
 {{- end }}

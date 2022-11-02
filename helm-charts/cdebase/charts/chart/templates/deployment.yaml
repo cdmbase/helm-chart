@@ -21,9 +21,17 @@ spec:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+{{- if or .Values.createConfigMapFromEnv .Values.configMapReference }}
         envFrom:
+{{- end }}
+{{- if .Values.createConfigMapFromEnv }}
         - configMapRef:
             name: {{ template "fullname" . }}-conf
+{{- end }}
+{{- if .Values.configMapReference }}
+        - configMapRef:
+            name: {{ .Values.configMapReference }}
+{{- end }}
         env:
         - name: NAMESPACE
           valueFrom:
