@@ -66,4 +66,4 @@ autoscaling:
 
 createConfigMapFromEnv: true
 ## Flag to attach additional configmap
-# configMapReference: clockbook-app-backend-configuration
+#configMapReference: clockbook-app-backend-configuration
