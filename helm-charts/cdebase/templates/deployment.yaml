@@ -24,13 +24,13 @@ spec:
 {{- if or .Values.createConfigMapFromEnv .Values.configMapReference }}
         envFrom:
 {{- end }}
-{{- if .Values.createConfigMapFromEnv }}
-        - configMapRef:
-            name: {{ template "fullname" . }}-conf
-{{- end }}
 {{- if .Values.configMapReference }}
         - configMapRef:
             name: {{ .Values.configMapReference }}
+{{- end }}
+{{- if .Values.createConfigMapFromEnv }}
+        - configMapRef:
+            name: {{ template "fullname" . }}-conf
 {{- end }}
         env:
         - name: NAMESPACE
