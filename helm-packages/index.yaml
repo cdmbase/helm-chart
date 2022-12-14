@@ -2,7 +2,15 @@ apiVersion: v1
 entries:
   cdebase:
   - apiVersion: v1
-    created: "2022-11-10T21:04:49.7369076+01:00"
+    created: "2022-12-14T20:13:47.9095228+01:00"
+    description: A Helm chart for Kubernetes
+    digest: 88b36e2e3b5a123e62bf185a4c0d8c76e2f2fdf8e0ab452ce65a225efa3f29ab
+    name: cdebase
+    urls:
+    - https://cdmbase.github.io/helm-chart/helm-packages/cdebase-v0.1.10.tgz
+    version: v0.1.10
+  - apiVersion: v1
+    created: "2022-12-14T20:13:47.9095228+01:00"
     description: A Helm chart for Kubernetes
     digest: 645e4e791a7ff3db91aab952a7abf924e5e188ddb90f9f64b767e77b29adcf34
     name: cdebase
@@ -10,7 +18,7 @@ entries:
     - https://cdmbase.github.io/helm-chart/helm-packages/cdebase-v0.1.9.tgz
     version: v0.1.9
   - apiVersion: v1
-    created: "2022-11-10T21:04:49.7364011+01:00"
+    created: "2022-12-14T20:13:47.9095228+01:00"
     description: A Helm chart for Kubernetes
     digest: 4f6672256f27772d05fe47dffc4c52778bc4c22569ab125a4bffb988c35548ad
     name: cdebase
@@ -18,7 +26,7 @@ entries:
     - https://cdmbase.github.io/helm-chart/helm-packages/cdebase-v0.1.8.tgz
     version: v0.1.8
   - apiVersion: v1
-    created: "2022-11-10T21:04:49.7343325+01:00"
+    created: "2022-12-14T20:13:47.9095228+01:00"
     description: A Helm chart for Kubernetes
     digest: 5c5ca98520c1e5f1e4a55541f06a3ed60b0e8413296dbda16776f218a30eb6b7
     name: cdebase
@@ -26,7 +34,7 @@ entries:
     - https://cdmbase.github.io/helm-chart/helm-packages/cdebase-v0.1.7.tgz
     version: v0.1.7
   - apiVersion: v1
-    created: "2022-11-10T21:04:49.7330237+01:00"
+    created: "2022-12-14T20:13:47.9095228+01:00"
     description: A Helm chart for Kubernetes
     digest: f28620017c6bb6faebd4683ef32c50ddddec5506772ea340b3a482104202cb8d
     name: cdebase
@@ -34,7 +42,7 @@ entries:
     - https://cdmbase.github.io/helm-chart/helm-packages/cdebase-v0.1.6.tgz
     version: v0.1.6
   - apiVersion: v1
-    created: "2022-11-10T21:04:49.7324761+01:00"
+    created: "2022-12-14T20:13:47.9095228+01:00"
     description: A Helm chart for Kubernetes
     digest: 9b37408e3c6676ba1a7b4f76864ca6f25746b7b21c8d459ddddb1a162b577e6d
     name: cdebase
@@ -42,11 +50,11 @@ entries:
     - https://cdmbase.github.io/helm-chart/helm-packages/cdebase-v0.1.5.tgz
     version: v0.1.5
   - apiVersion: v1
-    created: "2022-11-10T21:04:49.7319521+01:00"
+    created: "2022-12-14T20:13:47.9095228+01:00"
     description: A Helm chart for Kubernetes
     digest: 5e4c92ddde894db7003d1a1f5df1b0adf13cbd0095108516af12972102195d5c
     name: cdebase
     urls:
     - https://cdmbase.github.io/helm-chart/helm-packages/cdebase-v0.1.4.tgz
     version: v0.1.4
-generated: "2022-11-10T21:04:49.7314465+01:00"
+generated: "2022-12-14T20:13:47.9095228+01:00"

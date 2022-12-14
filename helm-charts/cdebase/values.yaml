@@ -71,5 +71,7 @@ autoscaling:
       targetAverageUtilization: 60
 
 createConfigMapFromEnv: true
+createSecretFromEnv: true
 ## Flag to attach additional configmap
 #configMapReference: clockbook-app-backend-configuration
+#SecretReference: clockbook-app-backend-secret
