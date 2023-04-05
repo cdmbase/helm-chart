@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/search: "true"
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  selector:
+    matchLabels:
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      annotations:
+        buildID: "{{ .Values.buildID }}"
+      labels:
+        app: {{ template "fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.global.image.repository }}:{{ .Values.global.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+{{- if or .Values.createConfigMapFromEnv .Values.configMapReference .Values.createSecretFromEnv .Values.SecretReference }}
+        envFrom:
+{{- end }}
+{{- if .Values.configMapReference }}
+        - configMapRef:
+            name: {{ .Values.configMapReference }}
+{{- end }}
+{{- if .Values.createConfigMapFromEnv }}
+        - configMapRef:
+            name: {{ template "fullname" . }}-conf
+{{- end }}
+{{- if .Values.createSecretFromEnv }}
+        - secretRef:
+            name: {{ template "fullname" . }}-secret
+{{- end }}
+{{- if .Values.SecretReference }}
+        - secretRef:
+            name: {{ .Values.SecretReference }}
+{{- end }}
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace 
+        ports:
+        - containerPort: {{ .Values.service.internalPort }}
+        resources:
+{{ toYaml .Values.resources | indent 12 }}
