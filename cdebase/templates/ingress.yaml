@@ -14,10 +14,10 @@ spec:
   rules:
    {{ if .Values.ingress.onlyDomainBase  }}
   - host: {{ .Values.ingress.domainBase }}
-  {{ else if and (.Values.ingress.domainPrefix) (.Values.namespace) }}
-  - host: {{ .Values.ingress.domainPrefix }}-{{.Values.namespace}}-{{ .Values.env.VERSION}}.{{ .Values.ingress.domainBase }}
+  {{ else if and (.Values.ingress.domainPrefix) (.Release.Namespace) }}
+  - host: {{ .Values.ingress.domainPrefix }}-{{ .Release.Namespace }}.{{ .Values.ingress.domainBase }}
   {{ else if (.Values.ingress.domainPrefix) }}
-  - host: {{ .Values.ingress.domainPrefix }}-{{ .Values.env.VERSION}}.{{ .Values.ingress.domainBase }}
+  - host: {{ .Values.ingress.domainPrefix }}.{{ .Values.ingress.domainBase }}
   {{ else }}
   - host: {{ template "idestack.frontend_ingress" . }}
   {{ end }}
@@ -34,10 +34,10 @@ spec:
   - hosts:
     {{ if .Values.ingress.onlyDomainBase  }}
     - {{ .Values.ingress.domainBase }}
-    {{ else if and (.Values.ingress.domainPrefix) (.Values.namespace) }}
-    - {{ .Values.ingress.domainPrefix }}-{{.Values.namespace}}-{{ .Values.env.VERSION}}.{{ .Values.ingress.domainBase }}
+    {{ else if and (.Values.ingress.domainPrefix) (.Release.Namespace) }}
+    - {{ .Values.ingress.domainPrefix }}-{{.Release.Namespace}}.{{ .Values.ingress.domainBase }}
     {{ else if (.Values.ingress.domainPrefix) }}
-    - {{ .Values.ingress.domainPrefix }}-{{ .Values.env.VERSION}}.{{ .Values.ingress.domainBase }}
+    - {{ .Values.ingress.domainPrefix }}.{{ .Values.ingress.domainBase }}
     {{ else }}
     - {{ template "idestack.frontend_ingress" . }}
     {{ end }}
