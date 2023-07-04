@@ -50,7 +50,7 @@ Create a default fully qualified zipkin name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "zipkin.fullname" -}}
-{{- printf "%s-%s-%s" .Release.Namespace .Values.external.name "zipkin" | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Values.external.name "zipkin" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 
@@ -59,7 +59,7 @@ Create a default fully qualified nats name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "nats.fullname" -}}
-{{- printf "%s-%s-%s" .Release.Namespace .Values.external.name "nats" | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Values.external.name "nats" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
@@ -67,7 +67,7 @@ Create a default fully qualified mysql name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "mongodb.fullname" -}}
-{{- printf "%s-%s-%s" .Release.Namespace .Values.external.name "mongodb" | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Values.external.name "mongodb" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
@@ -75,14 +75,17 @@ Create a default fully qualified zipkin name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "redis.fullname" -}}
-{{- printf "%s-%s-%s" .Release.Namespace .Values.external.name "redis" | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Values.external.name "redis" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 
-{{- define "nats_host"}}{{ include "nats.fullname" . }}.{{.Release.Namespace}}.svc.{{ include "region" . }}.{{ include "tld" . }}{{- end}}
-{{- define "mongodb_host"}}{{ include "mongodb.fullname" . }}.{{.Release.Namespace}}.svc.{{ include "region" . }}.{{ include "tld" . }}{{- end}}
+{{- define "nats_host"}}{{ include "nats.fullname" . }}.svc.{{ include "region" . }}.{{ include "tld" . }}{{- end}}
+{{- define "mongodb_host"}}{{ include "mongodb.fullname" . }}.svc.{{ include "region" . }}.{{ include "tld" . }}{{- end}}
 {{- define "mongodb_service"}}mongodb://{{ include "mongodb_host" . }}:{{ .Values.external.service.mongodb.port }}/{{ .Values.external.service.mongodb.dbname }}{{- end}}
 {{- define "nats_service"}}nats://{{ include "nats_host" . }}:{{ .Values.external.service.nats.port }}{{- end}}
-{{- define "zipkin_host"}}{{ include "zipkin.fullname" . }}.{{.Release.Namespace}}.svc.{{ include "region" . }}.{{ include "tld" . }}{{- end}}
-{{- define "redis_host"}}{{ include "redis.fullname" . }}.{{.Release.Namespace}}.svc.{{ include "region" . }}.{{ include "tld" . }}{{- end}}
+{{- define "zipkin_host"}}{{ include "zipkin.fullname" . }}.svc.{{ include "region" . }}.{{ include "tld" . }}{{- end}}
+{{- define "redis_host"}}{{ include "redis.fullname" . }}.svc.{{ include "region" . }}.{{ include "tld" . }}{{- end}}
 {{- define "redis_service"}}redis://{{ include "redis_host" . }}:{{ .Values.external.service.redis.port }}{{- end}}
+
+# public services
+{{- define "ingress_url"}}{{ .Release.Name }}-{{.Release.Namespace}}.{{ .Values.ingress.domain }}{{- end}}

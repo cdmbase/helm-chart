@@ -19,7 +19,7 @@ spec:
   {{ else if (.Values.ingress.domainPrefix) }}
   - host: {{ .Values.ingress.domainPrefix }}.{{ .Values.ingress.domainBase }}
   {{ else }}
-  - host: {{ template "idestack.frontend_ingress" . }}
+  - host: {{ template "ingress_url" . }}
   {{ end }}
     http:
       paths:
@@ -39,7 +39,7 @@ spec:
     {{ else if (.Values.ingress.domainPrefix) }}
     - {{ .Values.ingress.domainPrefix }}.{{ .Values.ingress.domainBase }}
     {{ else }}
-    - {{ template "idestack.frontend_ingress" . }}
+    - {{ template "ingress_url" . }}
     {{ end }}
     secretName: {{ template "fullname" . }}-tls
 {{- end }}
