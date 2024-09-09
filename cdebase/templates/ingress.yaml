@@ -15,9 +15,11 @@ spec:
    {{ if .Values.ingress.onlyDomainBase  }}
   - host: {{ .Values.ingress.domainBase }}
   {{ else if and (.Values.ingress.domainPrefix) (.Release.Namespace) }}
-  - host: {{ .Values.ingress.domainPrefix }}-{{ .Release.Namespace }}.{{ .Values.ingress.domainBase }}
+  - host: {{ .Values.ingress.domainPrefix }}{{ .Release.Namespace }}.{{ .Values.ingress.domainBase }}
   {{ else if (.Values.ingress.domainPrefix) }}
   - host: {{ .Values.ingress.domainPrefix }}.{{ .Values.ingress.domainBase }}
+  {{ else if (.Values.ingress.domainNamespace) }}
+  - host: {{ .Values.ingress.domainNamespace }}.{{ .Values.ingress.domainBase }}
   {{ else }}
   - host: {{ template "ingress_url" . }}
   {{ end }}
@@ -35,9 +37,11 @@ spec:
     {{ if .Values.ingress.onlyDomainBase  }}
     - {{ .Values.ingress.domainBase }}
     {{ else if and (.Values.ingress.domainPrefix) (.Release.Namespace) }}
-    - {{ .Values.ingress.domainPrefix }}-{{.Release.Namespace}}.{{ .Values.ingress.domainBase }}
+    - {{ .Values.ingress.domainPrefix }}{{.Release.Namespace}}.{{ .Values.ingress.domainBase }}
     {{ else if (.Values.ingress.domainPrefix) }}
     - {{ .Values.ingress.domainPrefix }}.{{ .Values.ingress.domainBase }}
+    {{ else if (.Values.ingress.domainNamespace) }}
+    - {{ .Values.ingress.domainNamespace }}.{{ .Values.ingress.domainBase }}
     {{ else }}
     - {{ template "ingress_url" . }}
     {{ end }}
