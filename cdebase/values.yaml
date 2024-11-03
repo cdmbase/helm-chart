@@ -1,6 +1,9 @@
 # Default values for node.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+sharedVolume: 
+  name: shared-volume
+  path: /data
 replicaCount: 1
 image:
   pullPolicy: IfNotPresent

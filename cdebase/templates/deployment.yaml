@@ -51,3 +51,10 @@ spec:
         - containerPort: {{ .Values.service.internalPort }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
+        volumeMounts:
+            - name: shared-volume
+              mountPath: {{ .Values.sharedVolume.path }}
+      volumes:
+          - name: shared-volume
+            persistentVolumeClaim:
+              claimName: {{ .Values.sharedVolume.name }}
