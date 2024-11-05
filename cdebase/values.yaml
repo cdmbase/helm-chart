@@ -1,6 +1,13 @@
 # Default values for node.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+
+# values derived from idestack chart at `https://github.com/cdmbase/kube-orchestration/tree/master/helm-charts/idestack`
+sharedVolume:
+  enabled: false 
+  name: shared-volume
+  path: /data
+
 replicaCount: 1
 image:
   pullPolicy: IfNotPresent
