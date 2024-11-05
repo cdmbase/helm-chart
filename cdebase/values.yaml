@@ -4,7 +4,7 @@
 
 # values derived from idestack chart at `https://github.com/cdmbase/kube-orchestration/tree/master/helm-charts/idestack`
 sharedVolume:
-  enabled: false 
+  enabled: true 
   name: shared-volume
   path: /data
 
