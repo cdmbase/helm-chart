@@ -8,6 +8,16 @@ sharedVolume:
   name: shared-volume
   path: /data
 
+# ServiceAccount name for the pod (empty = use namespace default)
+serviceAccountName: ""
+
+# RBAC — opt-in ServiceAccount + ClusterRoleBinding creation
+rbac:
+  enabled: false
+  createServiceAccount: true
+  clusterAdmin: false
+  # clusterRoleBindingName: ""  # override the binding name
+
 replicaCount: 1
 image:
   pullPolicy: IfNotPresent
@@ -37,6 +47,7 @@ env:
   VERSION: v1
 
 external:
+  enabled: true
   name: idestack
   service: 
     mongodb:

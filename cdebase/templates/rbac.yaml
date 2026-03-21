@@ -1,0 +1,28 @@
+{{- if .Values.rbac.enabled }}
+{{- if .Values.rbac.createServiceAccount }}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ .Values.serviceAccountName | default (printf "%s" (include "fullname" .)) }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "labels.standard" . | indent 4 }}
+{{- end }}
+---
+{{- if .Values.rbac.clusterAdmin }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Values.rbac.clusterRoleBindingName | default (printf "%s-admin" (include "fullname" .)) }}
+  labels:
+{{ include "labels.standard" . | indent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.serviceAccountName | default (printf "%s" (include "fullname" .)) }}
+    namespace: {{ .Release.Namespace }}
+{{- end }}
+{{- end }}
