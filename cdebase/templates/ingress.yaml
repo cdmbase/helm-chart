@@ -14,6 +14,8 @@ spec:
   rules:
    {{ if .Values.ingress.onlyDomainBase  }}
   - host: {{ .Values.ingress.domainBase }}
+  {{ else if and (.Values.ingress.domainPrefix) (.Values.ingress.skipNamespace) }}
+  - host: {{ .Values.ingress.domainPrefix }}{{ .Values.ingress.domainBase }}
   {{ else if and (.Values.ingress.domainPrefix) (.Release.Namespace) }}
   - host: {{ .Values.ingress.domainPrefix }}{{ .Release.Namespace }}.{{ .Values.ingress.domainBase }}
   {{ else if (.Values.ingress.domainPrefix) }}
@@ -36,6 +38,8 @@ spec:
   - hosts:
     {{ if .Values.ingress.onlyDomainBase  }}
     - {{ .Values.ingress.domainBase }}
+    {{ else if and (.Values.ingress.domainPrefix) (.Values.ingress.skipNamespace) }}
+    - {{ .Values.ingress.domainPrefix }}{{ .Values.ingress.domainBase }}
     {{ else if and (.Values.ingress.domainPrefix) (.Release.Namespace) }}
     - {{ .Values.ingress.domainPrefix }}{{.Release.Namespace}}.{{ .Values.ingress.domainBase }}
     {{ else if (.Values.ingress.domainPrefix) }}

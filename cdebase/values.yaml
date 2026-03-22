@@ -33,6 +33,7 @@ resources:
 
 ingress:
   enabled: false
+  skipNamespace: false
   annotations:
     external-dns.alpha.kubernetes.io/target: cdebase.dev
     kubernetes.io/ingress.class: traefik
